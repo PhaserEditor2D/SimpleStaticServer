@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/NYTimes/gziphandler"
 )
 
 var dir = "."
@@ -26,16 +28,18 @@ func main() {
 		os.Exit(1)
 	}
 
-	fileHandler := http.FileServer(http.Dir(dir))
+	fileServer := http.FileServer(http.Dir(dir))
+	cacheServer := cacheHandler(fileServer)
+	zipServer := gziphandler.GzipHandler(cacheServer)
 
-	http.Handle("/", enableCacheHandler(fileHandler))
+	http.Handle("/", zipServer)
 
 	log.Printf("Serving directory '%s'", dir)
 	log.Printf("Listening in http://127.0.0.1:%d\n", port)
 	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 }
 
-func enableCacheHandler(handler http.Handler) http.HandlerFunc {
+func cacheHandler(handler http.Handler) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
 
