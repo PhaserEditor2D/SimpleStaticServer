@@ -71,7 +71,6 @@ func (fs customFileSystem) Open(path string) (http.File, error) {
 
 	if err != nil {
 
-		fmt.Println("File not found " + path + " redirect to /")
 		// file not found, let's serve the root file
 
 		return fs.baseFileSystem.Open("/index.html")
