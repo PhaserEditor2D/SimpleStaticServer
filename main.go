@@ -51,6 +51,23 @@ func main() {
 	fileServer := http.FileServer(NewCustomFileSystem(dir))
 	cacheServer := cacheHandler(fileServer)
 	zipServer := gziphandler.GzipHandler(cacheServer)
+	gziphandler.GzipHandlerWithOpts(gziphandler.ContentTypes([]string{
+		"text/plain",
+		"text/html",
+		"text/css",
+		"text/csv",
+		"text/javascript",
+		"text/json",
+		"text/xml",
+		"application/json",
+		"application/xml",
+		"application/vnd.ms-fontobject",
+		"font/otf",
+		"font/ttf",
+		"font/woff",
+		"font/woff2",
+		"image/svg+xml",
+	}))
 
 	http.Handle("/", zipServer)
 

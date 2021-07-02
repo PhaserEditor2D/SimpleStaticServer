@@ -42,7 +42,25 @@ This server is implemented in Go, and uses the `net/http` package.
 
 ### Gzip
 
-The response bodies are compressed, using the [NYTimes GZipHandler](https://github.com/nytimes/gziphandler/).
+The files with these content types are gzip-compressed:
+
+```
+text/plain
+text/html
+text/css
+text/csv
+text/javascript
+text/json
+text/xml
+application/json
+application/xml
+application/vnd.ms-fontobject
+font/otf
+font/ttf
+font/woff
+font/woff2
+image/svg+xml
+```
 
 ## Build
 
