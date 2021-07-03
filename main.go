@@ -10,7 +10,7 @@ import (
 	"github.com/NYTimes/gziphandler"
 )
 
-const ver = "1.0.0"
+const ver = "1.0.2"
 
 var dir = "."
 var port = 1999
