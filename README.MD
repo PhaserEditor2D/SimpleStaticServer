@@ -2,6 +2,10 @@
 
 This is a very simple HTTP server for serving static content. For example, for serving HTML5 games and single page applications.
 
+## Download
+
+Get the `SimpleStaticServer` binaries form the [latest release](https://github.com/PhaserEditor2D/SimpleStaticServer/releases).
+
 ## Usage
 
 By default, the server listens at port `1999` and serves the current directory.
